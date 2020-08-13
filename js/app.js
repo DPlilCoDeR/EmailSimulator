@@ -2,6 +2,7 @@ const email = document.querySelector('#email');
 const asunto = document.querySelector('#asunto');
 const mensaje = document.querySelector('#mensaje');
 const botonEnviar = document.querySelector('#enviar');
+const botonReset = document.querySelector('#resetBtn');
 
 eventListeners();
 
@@ -10,7 +11,7 @@ function eventListeners() {
     email.addEventListener('blur', compruebaFormulario);
     asunto.addEventListener('blur', compruebaFormulario);
     mensaje.addEventListener('blur', compruebaFormulario);
-
+    botonReset.addEventListener('click', limpiaFormulario);
 }
 
 function compruebaFormulario() {
@@ -52,4 +53,10 @@ function habilitaBotonCamposCompletos() {
 
 function deshabilitarBotonEnviar() {
     botonEnviar.disabled = true;
+}
+
+function limpiaFormulario() {
+    email.value = '';
+    asunto.value = '';
+    mensaje.value = '';
 }
