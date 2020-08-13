@@ -56,7 +56,5 @@ function deshabilitarBotonEnviar() {
 }
 
 function limpiaFormulario() {
-    email.value = '';
-    asunto.value = '';
-    mensaje.value = '';
+    document.querySelector('#enviar-mail').reset();
 }
