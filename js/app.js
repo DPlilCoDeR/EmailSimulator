@@ -1,3 +1,4 @@
+const formulario = document.querySelector('#enviar-mail');
 const email = document.querySelector('#email');
 const asunto = document.querySelector('#asunto');
 const mensaje = document.querySelector('#mensaje');
@@ -11,6 +12,7 @@ function eventListeners() {
     email.addEventListener('blur', compruebaFormulario);
     asunto.addEventListener('blur', compruebaFormulario);
     mensaje.addEventListener('blur', compruebaFormulario);
+    botonEnviar.addEventListener('click', enviaEmail);
     botonReset.addEventListener('click', limpiaFormulario);
 }
 
@@ -56,5 +58,27 @@ function deshabilitarBotonEnviar() {
 }
 
 function limpiaFormulario() {
-    document.querySelector('#enviar-mail').reset();
+    formulario.reset();
+}
+
+function enviaEmail(event) {
+    event.preventDefault();
+
+    const spinner = document.querySelector('#spinner');
+    spinner.style.display = 'block';
+
+    const envio = document.createElement('img');
+    envio.src = 'img/mail.gif';
+    envio.style.display = 'block';
+
+    setTimeout(function(){
+        const loaders = document.querySelector('#loaders');
+        spinner.style.display = 'none';
+
+        loaders.appendChild( envio);
+        setTimeout(function(){
+            envio.remove();
+            limpiaFormulario();
+        }, 4000)
+    }, 2000);
 }
